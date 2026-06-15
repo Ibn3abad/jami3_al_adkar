@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Outer Octagon Frame -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,0 L102,18 L120,60 L102,102 L60,120 L18,102 L0,60 L18,18 Z"
+        android:fillAlpha="0.2"/>
+    <!-- Intersecting Lines -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="M60,0 L60,120 M0,60 L120,60 M18,18 L102,102 M18,102 L102,18"
+        android:strokeAlpha="0.3"/>
+    <!-- Central Star Shape -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,40 L65,55 L80,60 L65,65 L60,80 L55,65 L40,60 L55,55 Z"
+        android:fillAlpha="0.4"/>
+    <!-- Corner Accents -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10,10 L20,15 L15,25 L5,20 Z"
+        android:fillAlpha="0.1"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M110,10 L100,15 L105,25 L115,20 Z"
+        android:fillAlpha="0.1"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10,110 L20,105 L15,95 L5,100 Z"
+        android:fillAlpha="0.1"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M110,110 L100,105 L105,95 L115,100 Z"
+        android:fillAlpha="0.1"/>
+</vector>

@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Centered Mosque Silhouette -->
+    <!-- Scale and translate a 24x24 path to fit the 72x72 safe zone -->
+    <group
+        android:translateX="18"
+        android:translateY="18"
+        android:scaleX="3"
+        android:scaleY="3">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M12,2L10.5,5H13.5L12,2ZM12,6C8,6 5,9 5,13V20H19V13C19,9 16,6 12,6ZM10,18V14H14V18H10Z" />
+    </group>
+</vector>
