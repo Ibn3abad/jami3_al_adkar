@@ -40,7 +40,6 @@ class AdkarViewModel(private val repository: AdkarRepository) : ViewModel() {
         loadJob?.cancel()
         _uiState.value = AdkarUiState.Loading
         loadJob = viewModelScope.launch {
-            repository.checkAndPrepopulate(category)
             repository.getAdkarByCategoryStream(category).collect { adkarList ->
                 if (adkarList.isEmpty()) {
                     _uiState.value = AdkarUiState.Empty

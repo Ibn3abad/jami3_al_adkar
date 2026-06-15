@@ -1,1 +1,0 @@
-# jami3_al_adkar

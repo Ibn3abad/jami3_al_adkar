@@ -1,7 +1,7 @@
 /**
  * @author     A. KHOUK
  * @date       12.06.2026
- * @version    1.01
+ * @version    1.02
  * @copyright  Copyright (c) 2026, A. KHOUK.
  * @license    This program is free software: you can redistribute it and/or modify
  *             it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ abstract class AdkarDatabase : RoomDatabase() {
         fun getDatabase(context: Context): AdkarDatabase {
             return Instance ?: synchronized(this) {
                 Room.databaseBuilder(context, AdkarDatabase::class.java, "adkar_database")
+                    .createFromAsset("adkar.db")
                     .fallbackToDestructiveMigration()
                     .build()
                     .also { Instance = it }
