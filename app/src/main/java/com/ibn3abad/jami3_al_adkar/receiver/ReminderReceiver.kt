@@ -62,7 +62,7 @@ class ReminderReceiver : BroadcastReceiver() {
         )
 
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_launcher_foreground) // Use a proper icon if available
+            .setSmallIcon(R.mipmap.ic_launcher) // Use the app icon as the notification icon
             .setContentTitle(categoryName)
             .setContentText(context.getString(R.string.notification_body))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
