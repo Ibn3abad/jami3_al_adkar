@@ -13,7 +13,6 @@ package com.ibn3abad.jami3_al_adkar
 
 import android.app.TimePickerDialog
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.os.LocaleList
 import java.util.Locale
@@ -25,7 +24,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-//import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -76,9 +74,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-//import androidx.compose.ui.draw.alpha
-//import androidx.compose.ui.draw.drawBehind
-//import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -150,16 +145,13 @@ fun Jami3_al_adkarApp(
     language: AppLanguage = AppLanguage.GERMAN
 ) {
     val context = LocalContext.current
+    val configuration = LocalConfiguration.current
     
-    val localizedContext = remember(language) {
-        val locale = Locale(language.localeCode)
+    val localizedContext = remember(language, configuration) {
+        val locale = Locale.forLanguageTag(language.localeCode)
         Locale.setDefault(locale)
-        val config = Configuration(context.resources.configuration).apply {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                setLocales(LocaleList(locale))
-            } else {
-                setLocale(locale)
-            }
+        val config = Configuration(configuration).apply {
+            setLocales(LocaleList(locale))
             setLayoutDirection(locale)
         }
         context.createConfigurationContext(config)
