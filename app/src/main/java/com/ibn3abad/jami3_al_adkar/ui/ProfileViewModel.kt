@@ -1,7 +1,7 @@
 /**
  * @author     A. KHOUK
  * @date       12.06.2026
- * @version    1.01
+ * @version    4.05
  * @copyright  Copyright (c) 2026, A. KHOUK.
  * @license    This program is free software: you can redistribute it and/or modify
  *             it under the terms of the GNU General Public License as published by
@@ -28,14 +28,14 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-enum class AppLanguage(val nativeName: String, val isRtl: Boolean = false) {
-    ARABIC("العربية", true),
-    GERMAN("Deutsch"),
-    ENGLISH("English"),
-    FRENCH("Français"),
-    SPANISH("Español"),
-    URDU("اردو", true),
-    FARISI("فارسی", true)
+enum class AppLanguage(val nativeName: String, val localeCode: String, val isRtl: Boolean = false) {
+    ARABIC("العربية", "ar", true),
+    GERMAN("Deutsch", "de"),
+    ENGLISH("English", "en"),
+    FRENCH("Français", "fr"),
+    SPANISH("Español", "es"),
+    URDU("اردو", "ur", true),
+    FARISI("فارسی", "fa", true)
 }
 
 data class CategoryProgress(

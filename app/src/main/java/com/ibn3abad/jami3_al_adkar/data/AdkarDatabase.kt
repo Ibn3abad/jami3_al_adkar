@@ -18,7 +18,7 @@ import androidx.room.RoomDatabase
 import com.ibn3abad.jami3_al_adkar.data.dao.AdkarDao
 import com.ibn3abad.jami3_al_adkar.data.model.Adkar
 
-@Database(entities = [Adkar::class], version = 9, exportSchema = false)
+@Database(entities = [Adkar::class], version = 12, exportSchema = false)
 abstract class AdkarDatabase : RoomDatabase() {
     abstract fun adkarDao(): AdkarDao
 
@@ -28,7 +28,7 @@ abstract class AdkarDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AdkarDatabase {
             return Instance ?: synchronized(this) {
-                Room.databaseBuilder(context, AdkarDatabase::class.java, "adkar_database")
+                Room.databaseBuilder(context, AdkarDatabase::class.java, "adkar_database_v12")
                     .createFromAsset("adkar.db")
                     .fallbackToDestructiveMigration()
                     .build()

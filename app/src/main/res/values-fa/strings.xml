@@ -1,0 +1,30 @@
+<resources>
+    <string name="back">بازگشت</string>
+    <string name="no_adkar_found">ذکری پیدا نشد</string>
+    <string name="dhikr_count_label">ذکر %1$d / %2$d</string>
+    <string name="tap_to_count">برای شمارش ضربه بزنید</string>
+    <string name="done_next">انجام شد! بعدی...</string>
+    <string name="all_adkar_read">تمام اذکار خوانده شد</string>
+    <string name="source_label">منبع: %1$s</string>
+    <string name="previous">قبلی</string>
+    <string name="next">بعدی</string>
+    <string name="choose_your_adkar">اذکار خود را انتخاب کنید</string>
+    <string name="settings_progress">تنظیمات و پیشرفت</string>
+    <string name="today_progress">پیشرفت امروز</string>
+    <string name="language">زبان</string>
+    <string name="favorites">علاقه‌مندی‌ها</string>
+    <string name="no_favorites_yet">هنوز ذکری به علاقه‌مندی‌ها اضافه نشده است</string>
+    <string name="welcome_to">به %1$s خوش آمدید</string>
+    <string name="cat_morning">اذکار صبح</string>
+    <string name="cat_evening">اذکار شب</string>
+    <string name="cat_sleep">اذکار خواب</string>
+    <string name="cat_entering">ورود</string>
+    <string name="cat_leaving">خروج</string>
+    <string name="dest_home">خانه</string>
+    <string name="dest_favorites">علاقه‌مندی‌ها</string>
+    <string name="dest_profile">پروفایل</string>
+    <string name="reminders">یادآوری‌ها</string>
+    <string name="morning_reminder">یادآوری صبح</string>
+    <string name="evening_reminder">یادآوری عصر</string>
+    <string name="sleep_reminder">یادآوری خواب</string>
+</resources>

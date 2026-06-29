@@ -1,0 +1,30 @@
+<resources>
+    <string name="back">Atrás</string>
+    <string name="no_adkar_found">No se encontraron Adkar</string>
+    <string name="dhikr_count_label">Dhikr %1$d / %2$d</string>
+    <string name="tap_to_count">Toca para contar</string>
+    <string name="done_next">¡Hecho! Siguiente...</string>
+    <string name="all_adkar_read">Todos los Adkar leídos</string>
+    <string name="source_label">Fuente: %1$s</string>
+    <string name="previous">Anterior</string>
+    <string name="next">Siguiente</string>
+    <string name="choose_your_adkar">Elige tus Adkar</string>
+    <string name="settings_progress">Ajustes y Progreso</string>
+    <string name="today_progress">Progreso de hoy</string>
+    <string name="language">Idioma</string>
+    <string name="favorites">Favoritos</string>
+    <string name="no_favorites_yet">Aún no hay Adkar favoritos</string>
+    <string name="welcome_to">Bienvenido a %1$s</string>
+    <string name="cat_morning">Adkar de la mañana</string>
+    <string name="cat_evening">Adkar de la tarde</string>
+    <string name="cat_sleep">Adkar para dormir</string>
+    <string name="cat_entering">Entrar</string>
+    <string name="cat_leaving">Salir</string>
+    <string name="dest_home">Inicio</string>
+    <string name="dest_favorites">Favoritos</string>
+    <string name="dest_profile">Perfil</string>
+    <string name="reminders">Recordatorios</string>
+    <string name="morning_reminder">Recordatorio de la mañana</string>
+    <string name="evening_reminder">Recordatorio de la tarde</string>
+    <string name="sleep_reminder">Recordatorio para dormir</string>
+</resources>

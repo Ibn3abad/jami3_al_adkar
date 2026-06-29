@@ -1,7 +1,7 @@
 /**
  * @author     A. KHOUK
  * @date       12.06.2026
- * @version    1.01
+ * @version    4.05
  * @copyright  Copyright (c) 2026, A. KHOUK.
  * @license    This program is free software: you can redistribute it and/or modify
  *             it under the terms of the GNU General Public License as published by
@@ -11,7 +11,6 @@
 
 package com.ibn3abad.jami3_al_adkar.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +19,6 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(

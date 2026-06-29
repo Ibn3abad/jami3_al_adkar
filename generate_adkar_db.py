@@ -41,7 +41,7 @@ OUTPUT_FILE = "adkar.db"
 # Room identity hash for version 9 of AdkarDatabase
 # (taken from the crash log: Expected identity hash: 9898b877d94a5411ec912820e8de18b2)
 ROOM_IDENTITY_HASH = "9898b877d94a5411ec912820e8de18b2"
-ROOM_DB_VERSION = 9
+ROOM_DB_VERSION = 12
 
 # ---------------------------------------------------------------------------
 # Data

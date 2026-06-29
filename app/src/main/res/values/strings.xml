@@ -2,236 +2,40 @@
     <string name="app_name">Jami3 al-Adkar</string>
 
     <string name="back">Back</string>
-    <string name="back_ar">رجوع</string>
-    <string name="back_de">Zurück</string>
-    <string name="back_fr">Retour</string>
-    <string name="back_es">Atrás</string>
-    <string name="back_ur">پیچھے</string>
-    <string name="back_fa">بازگشت</string>
-
     <string name="no_adkar_found">No Adkar found</string>
-    <string name="no_adkar_found_ar">لم يتم العثور على أذكار</string>
-    <string name="no_adkar_found_de">Keine Adkar gefunden</string>
-    <string name="no_adkar_found_fr">Aucun Adkar trouvé</string>
-    <string name="no_adkar_found_es">No se encontraron Adkar</string>
-    <string name="no_adkar_found_ur">کوئی اذکار نہیں ملا</string>
-    <string name="no_adkar_found_fa">ذکری پیدا نشد</string>
-
     <string name="dhikr_count_label">Dhikr %1$d / %2$d</string>
-    <string name="dhikr_count_label_ar">الذكر %1$d / %2$d</string>
-    <string name="dhikr_count_label_de">Adkar %1$d / %2$d</string>
-    <string name="dhikr_count_label_fr">Dhikr %1$d / %2$d</string>
-    <string name="dhikr_count_label_es">Dhikr %1$d / %2$d</string>
-    <string name="dhikr_count_label_ur">ذکر %1$d / %2$d</string>
-    <string name="dhikr_count_label_fa">ذکر %1$d / %2$d</string>
-
     <string name="tap_to_count">Tap to count</string>
-    <string name="tap_to_count_ar">انقر للعد</string>
-    <string name="tap_to_count_de">Tippen zum Zählen</string>
-    <string name="tap_to_count_fr">Appuyez pour compter</string>
-    <string name="tap_to_count_es">Toca para contar</string>
-    <string name="tap_to_count_ur">گننے کے لیے تھپتھپائیں</string>
-    <string name="tap_to_count_fa">برای شمارش ضربه بزنید</string>
-
     <string name="done_next">Done! Next...</string>
-    <string name="done_next_ar">اكتمل! التالي...</string>
-    <string name="done_next_de">Abgeschlossen! Nächstes Adkar...</string>
-    <string name="done_next_fr">Terminé ! Suivant...</string>
-    <string name="done_next_es">¡Hecho! Siguiente...</string>
-    <string name="done_next_ur">ہو گیا! اگلا...</string>
-    <string name="done_next_fa">انجام شد! بعدی...</string>
-
     <string name="all_adkar_read">All Adkar read</string>
-    <string name="all_adkar_read_ar">تمت قراءة جميع الأذكار</string>
-    <string name="all_adkar_read_de">Alle Adkar gelesen</string>
-    <string name="all_adkar_read_fr">Tous les Adkar ont été lus</string>
-    <string name="all_adkar_read_es">Todos los Adkar leídos</string>
-    <string name="all_adkar_read_ur">تمام اذکار پڑھ لیے گئے</string>
-    <string name="all_adkar_read_fa">تمام اذکار خوانده شد</string>
-
     <string name="source_label">Source: %1$s</string>
-    <string name="source_label_ar">المصدر: %1$s</string>
-    <string name="source_label_de">Quelle: %1$s</string>
-    <string name="source_label_fr">Source : %1$s</string>
-    <string name="source_label_es">Fuente: %1$s</string>
-    <string name="source_label_ur">حوالہ: %1$s</string>
-    <string name="source_label_fa">منبع: %1$s</string>
-
     <string name="previous">Previous</string>
-    <string name="previous_ar">السابق</string>
-    <string name="previous_de">Zurück</string>
-    <string name="previous_fr">Précédent</string>
-    <string name="previous_es">Anterior</string>
-    <string name="previous_ur">پچھلا</string>
-    <string name="previous_fa">قبلی</string>
-
     <string name="next">Next</string>
-    <string name="next_ar">التالي</string>
-    <string name="next_de">Weiter</string>
-    <string name="next_fr">Suivant</string>
-    <string name="next_es">Siguiente</string>
-    <string name="next_ur">اگلا</string>
-    <string name="next_fa">بعدی</string>
-
     <string name="choose_your_adkar">Choose your Adkar</string>
-    <string name="choose_your_adkar_ar">اختر الأذكار</string>
-    <string name="choose_your_adkar_de">Wähle deine Adkar</string>
-    <string name="choose_your_adkar_fr">Choisissez vos Adkar</string>
-    <string name="choose_your_adkar_es">Elige tus Adkar</string>
-    <string name="choose_your_adkar_ur">اپنے اذکار کا انتخاب کریں</string>
-    <string name="choose_your_adkar_fa">اذکار خود را انتخاب کنید</string>
-
     <string name="settings_progress">Settings &amp; Progress</string>
-    <string name="settings_progress_ar">الإعدادات والتقدم</string>
-    <string name="settings_progress_de">Einstellungen &amp; Fortschritt</string>
-    <string name="settings_progress_fr">Paramètres et Progression</string>
-    <string name="settings_progress_es">Ajustes y Progreso</string>
-    <string name="settings_progress_ur">ترتیبات اور پیشرفت</string>
-    <string name="settings_progress_fa">تنظیمات و پیشرفت</string>
-
     <string name="today_progress">Today\'s Progress</string>
-    <string name="today_progress_ar">تقدم اليوم</string>
-    <string name="today_progress_de">Heutiger Fortschritt</string>
-    <string name="today_progress_fr">Progression du jour</string>
-    <string name="today_progress_es">Progreso de hoy</string>
-    <string name="today_progress_ur">آج کی پیشرفت</string>
-    <string name="today_progress_fa">پیشرفت امروز</string>
-
     <string name="language">Language</string>
-    <string name="language_ar">اللغة</string>
-    <string name="language_de">Sprache</string>
-    <string name="language_fr">Langue</string>
-    <string name="language_es">Idioma</string>
-    <string name="language_ur">زبان</string>
-    <string name="language_fa">زبان</string>
-
     <string name="favorites">Favorites</string>
-    <string name="favorites_ar">المفضلة</string>
-    <string name="favorites_de">Favoriten</string>
-    <string name="favorites_fr">Favoris</string>
-    <string name="favorites_es">Favoritos</string>
-    <string name="favorites_ur">پسندیدہ</string>
-    <string name="favorites_fa">علاقه‌مندی‌ها</string>
-
     <string name="no_favorites_yet">No favorite Adkar yet</string>
-    <string name="no_favorites_yet_ar">لا يوجد أذكار مفضلة</string>
-    <string name="no_favorites_yet_de">Noch keine Favoriten</string>
-    <string name="no_favorites_yet_fr">Pas encore d\'Adkar favoris</string>
-    <string name="no_favorites_yet_es">Aún no hay Adkar favoritos</string>
-    <string name="no_favorites_yet_ur">ابھی تک کوئی پسندیدہ اذکار نہیں</string>
-    <string name="no_favorites_yet_fa">هنوز ذکری به علاقه‌مندی‌ها اضافه نشده است</string>
-
     <string name="welcome_to">Welcome to %1$s</string>
-    <string name="welcome_to_ar">مرحباً بك في %1$s</string>
-    <string name="welcome_to_de">Willkommen bei %1$s</string>
-    <string name="welcome_to_fr">Bienvenue sur %1$s</string>
-    <string name="welcome_to_es">Bienvenido a %1$s</string>
-    <string name="welcome_to_ur">%1$s میں خوش آمدید</string>
-    <string name="welcome_to_fa">به %1$s خوش آمدید</string>
 
     <!-- Categories -->
     <string name="cat_morning">Morning Adkar</string>
-    <string name="cat_morning_ar">أذكار الصباح</string>
-    <string name="cat_morning_de">Morgengebete</string>
-    <string name="cat_morning_fr">Adkar du matin</string>
-    <string name="cat_morning_es">Adkar de la mañana</string>
-    <string name="cat_morning_ur">صبح کے اذکار</string>
-    <string name="cat_morning_fa">اذکار صبح</string>
-
     <string name="cat_evening">Evening Adkar</string>
-    <string name="cat_evening_ar">أذكار المساء</string>
-    <string name="cat_evening_de">Abendgebete</string>
-    <string name="cat_evening_fr">Adkar du soir</string>
-    <string name="cat_evening_es">Adkar de la tarde</string>
-    <string name="cat_evening_ur">شام کے اذکار</string>
-    <string name="cat_evening_fa">اذکار شب</string>
-
     <string name="cat_sleep">Sleep Adkar</string>
-    <string name="cat_sleep_ar">أذكار النوم</string>
-    <string name="cat_sleep_de">Gebete vor dem Schlafen</string>
-    <string name="cat_sleep_fr">Adkar du sommeil</string>
-    <string name="cat_sleep_es">Adkar para dormir</string>
-    <string name="cat_sleep_ur">سونے کے اذکار</string>
-    <string name="cat_sleep_fa">اذکار خواب</string>
-
     <string name="cat_entering">Entering</string>
-    <string name="cat_entering_ar">أذكار الدخول</string>
-    <string name="cat_entering_de">Beim Eintreten</string>
-    <string name="cat_entering_fr">Entrée</string>
-    <string name="cat_entering_es">Entrar</string>
-    <string name="cat_entering_ur">داخل ہونا</string>
-    <string name="cat_entering_fa">ورود</string>
-
     <string name="cat_leaving">Leaving</string>
-    <string name="cat_leaving_ar">أذكار الخروج</string>
-    <string name="cat_leaving_de">Beim Verlassen</string>
-    <string name="cat_leaving_fr">Sortie</string>
-    <string name="cat_leaving_es">Salir</string>
-    <string name="cat_leaving_ur">نکلنا</string>
-    <string name="cat_leaving_fa">خروج</string>
 
     <!-- App Destinations -->
     <string name="dest_home">Home</string>
-    <string name="dest_home_ar">الرئيسية</string>
-    <string name="dest_home_de">Startseite</string>
-    <string name="dest_home_fr">Accueil</string>
-    <string name="dest_home_es">Inicio</string>
-    <string name="dest_home_ur">ہوم</string>
-    <string name="dest_home_fa">خانه</string>
-
     <string name="dest_favorites">Favorites</string>
-    <string name="dest_favorites_ar">المفضلة</string>
-    <string name="dest_favorites_de">Favoriten</string>
-    <string name="dest_favorites_fr">Favoris</string>
-    <string name="dest_favorites_es">Favoritos</string>
-    <string name="dest_favorites_ur">پسندیدہ</string>
-    <string name="dest_favorites_fa">علاقه‌مندی‌ها</string>
-
     <string name="dest_profile">Profile</string>
-    <string name="dest_profile_ar">حسابي</string>
-    <string name="dest_profile_de">Profil</string>
-    <string name="dest_profile_fr">Profil</string>
-    <string name="dest_profile_es">Perfil</string>
-    <string name="dest_profile_ur">پروفائل</string>
-    <string name="dest_profile_fa">پروفایل</string>
 
     <!-- Reminders -->
     <string name="reminders">Reminders</string>
-    <string name="reminders_ar">التذكيرات</string>
-    <string name="reminders_de">Erinnerungen</string>
-    <string name="reminders_fr">Rappels</string>
-    <string name="reminders_es">Recordatorios</string>
-    <string name="reminders_ur">یاددہانی</string>
-    <string name="reminders_fa">یادآوری‌ها</string>
-
     <string name="morning_reminder">Morning Reminder</string>
-    <string name="morning_reminder_ar">تذكير الصباح</string>
-    <string name="morning_reminder_de">Morgenerinnerung</string>
-    <string name="morning_reminder_fr">Rappel du matin</string>
-    <string name="morning_reminder_es">Recordatorio de la mañana</string>
-    <string name="morning_reminder_ur">صبح کی یاددہانی</string>
-    <string name="morning_reminder_fa">یادآوری صبح</string>
-
     <string name="evening_reminder">Evening Reminder</string>
-    <string name="evening_reminder_ar">تذكير المساء</string>
-    <string name="evening_reminder_de">Abenderinnerung</string>
-    <string name="evening_reminder_fr">Rappel du soir</string>
-    <string name="evening_reminder_es">Recordatorio de la tarde</string>
-    <string name="evening_reminder_ur">شام کی یاددہانی</string>
-    <string name="evening_reminder_fa">یادآوری عصر</string>
-
     <string name="sleep_reminder">Sleep Reminder</string>
-    <string name="sleep_reminder_ar">تذكير النوم</string>
-    <string name="sleep_reminder_de">Schlaf-Erinnerung</string>
-    <string name="sleep_reminder_fr">Rappel du sommeil</string>
-    <string name="sleep_reminder_es">Recordatorio para dormir</string>
-    <string name="sleep_reminder_ur">سونے کی یاددہانی</string>
-    <string name="sleep_reminder_fa">یادآوری خواب</string>
 
     <string name="notification_title">Time for Adkar</string>
-    <string name="notification_title_ar">حان وقت الأذكار</string>
-    <string name="notification_title_de">Zeit für Adkar</string>
     <string name="notification_body">Don\'t forget to read your Adkar</string>
-    <string name="notification_body_ar">لا تنس قراءة أذكارك</string>
-    <string name="notification_body_de">Vergiss nicht, deine Adkar zu lesen</string>
 </resources>

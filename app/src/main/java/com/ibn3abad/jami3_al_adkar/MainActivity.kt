@@ -1,7 +1,7 @@
 /**
  * @author     A. KHOUK
  * @date       12.06.2026
- * @version    1.01
+ * @version    4.05
  * @copyright  Copyright (c) 2026, A. KHOUK.
  * @license    This program is free software: you can redistribute it and/or modify
  *             it under the terms of the GNU General Public License as published by
@@ -12,7 +12,11 @@
 package com.ibn3abad.jami3_al_adkar
 
 import android.app.TimePickerDialog
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.os.LocaleList
+import java.util.Locale
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -21,7 +25,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.background
+//import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -58,6 +62,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -71,14 +76,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.Brush
+//import androidx.compose.ui.draw.alpha
+//import androidx.compose.ui.draw.drawBehind
+//import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -114,7 +123,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-val DestinationSaver = listSaver<Any, Any>(
+val DestinationSaver = listSaver(
     save = {
         when (it) {
             is AppDestinations -> listOf("ENUM", it.name)
@@ -140,87 +149,112 @@ fun Jami3_al_adkarApp(
     profileViewModel: ProfileViewModel = viewModel(),
     language: AppLanguage = AppLanguage.GERMAN
 ) {
-    var currentDestination by rememberSaveable(stateSaver = DestinationSaver) { 
-        mutableStateOf<Any>(AppDestinations.HOME) 
+    val context = LocalContext.current
+    
+    val localizedContext = remember(language) {
+        val locale = Locale(language.localeCode)
+        Locale.setDefault(locale)
+        val config = Configuration(context.resources.configuration).apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                setLocales(LocaleList(locale))
+            } else {
+                setLocale(locale)
+            }
+            setLayoutDirection(locale)
+        }
+        context.createConfigurationContext(config)
     }
 
-    Box(
-        modifier = Modifier.fillMaxSize()
+    val layoutDirection = if (language.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr
+
+    CompositionLocalProvider(
+        LocalContext provides localizedContext,
+        LocalConfiguration provides localizedContext.resources.configuration,
+        LocalLayoutDirection provides layoutDirection
     ) {
-        // Background Image
-        Image(
-            painter = painterResource(id = R.drawable.app_background),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
+        var currentDestination by rememberSaveable(stateSaver = DestinationSaver) { 
+            mutableStateOf(AppDestinations.HOME)
+        }
 
-        NavigationSuiteScaffold(
-            modifier = Modifier.fillMaxSize(),
-            containerColor = Color.Transparent, // Make scaffold transparent to see background
-            navigationSuiteItems = {
-                AppDestinations.entries.forEach { destination ->
-                    item(
-                        icon = {
-                            Icon(
-                                painterResource(destination.icon),
-                                contentDescription = null // We'll handle label below
-                            )
-                        },
-                        label = { 
-                            Text(localizedString(destination.labelResId, language)) 
-                        },
-                        selected = (currentDestination is AppDestinations) && destination == currentDestination,
-                        onClick = { currentDestination = destination }
-                    )
-                }
-            }
+        Box(
+            modifier = Modifier.fillMaxSize()
         ) {
-            Scaffold(
+            // Background Image
+            Image(
+                painter = painterResource(id = R.drawable.app_background),
+                contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                containerColor = Color.Transparent // Make internal scaffold transparent
-            ) { innerPadding ->
-                when (val dest = currentDestination) {
-                    AppDestinations.HOME -> AdkarHome(
-                        language = language,
-                        modifier = Modifier.padding(innerPadding),
-                        onCategoryClick = { category ->
-                            currentDestination = AdkarDetailsDestination(
-                                category.id, 
-                                category.titleResId
-                            )
-                        }
-                    )
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.Center
+            )
 
-                    is AdkarDetailsDestination -> AdkarDetailsScreen(
-                        categoryId = dest.categoryId,
-                        categoryNameResId = dest.categoryNameResId,
-                        language = language,
-                        modifier = Modifier.padding(innerPadding),
-                        onBack = { currentDestination = AppDestinations.HOME }
-                    )
+            NavigationSuiteScaffold(
+                modifier = Modifier.fillMaxSize(),
+                containerColor = Color.Transparent, // Make scaffold transparent to see background
+                navigationSuiteItems = {
+                    AppDestinations.entries.forEach { destination ->
+                        item(
+                            icon = {
+                                Icon(
+                                    painterResource(destination.icon),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            },
+                            label = { 
+                                Text(stringResource(destination.labelResId)) 
+                            },
+                            selected = (currentDestination is AppDestinations) && destination == currentDestination,
+                            onClick = { currentDestination = destination }
+                        )
+                    }
+                }
+            ) {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    containerColor = Color.Transparent // Make internal scaffold transparent
+                ) { innerPadding ->
+                    when (val dest = currentDestination) {
+                        AppDestinations.HOME -> AdkarHome(
+                            language = language,
+                            modifier = Modifier.padding(innerPadding),
+                            onCategoryClick = { category ->
+                                currentDestination = AdkarDetailsDestination(
+                                    category.id, 
+                                    category.titleResId
+                                )
+                            }
+                        )
 
-                    AppDestinations.PROFILE -> ProfileScreen(
-                        profileViewModel = profileViewModel,
-                        language = language,
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                        is AdkarDetailsDestination -> AdkarDetailsScreen(
+                            categoryId = dest.categoryId,
+                            categoryNameResId = dest.categoryNameResId,
+                            language = language,
+                            modifier = Modifier.padding(innerPadding),
+                            onBack = { currentDestination = AppDestinations.HOME }
+                        )
 
-                    AppDestinations.FAVORITES -> FavoritesScreen(
-                        language = language,
-                        modifier = Modifier.padding(innerPadding)
-                    )
-
-                    else -> {
-                        val label = (dest as? AppDestinations)?.let { 
-                            localizedString(it.labelResId, language)
-                        } ?: stringResource(R.string.app_name)
-                        
-                        Greeting(
-                            name = label,
+                        AppDestinations.PROFILE -> ProfileScreen(
+                            profileViewModel = profileViewModel,
                             language = language,
                             modifier = Modifier.padding(innerPadding)
                         )
+
+                        AppDestinations.FAVORITES -> FavoritesScreen(
+                            language = language,
+                            modifier = Modifier.padding(innerPadding)
+                        )
+
+                        else -> {
+                            val label = (dest as? AppDestinations)?.let { 
+                                stringResource(it.labelResId)
+                            } ?: stringResource(R.string.app_name)
+                            
+                            Greeting(
+                                name = label,
+                                modifier = Modifier.padding(innerPadding)
+                            )
+                        }
                     }
                 }
             }
@@ -252,15 +286,18 @@ fun AdkarDetailsScreen(
 
     Column(modifier = modifier.fillMaxSize()) {
         TopAppBar(
-            title = { Text(localizedString(categoryNameResId, language)) },
+            title = { Text(stringResource(categoryNameResId)) },
             navigationIcon = {
                 IconButton(onClick = onBack) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = localizedString(R.string.back, language)
+                        contentDescription = stringResource(R.string.back)
                     )
                 }
-            }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color.Transparent
+            )
         )
 
         when (val state = uiState) {
@@ -278,7 +315,7 @@ fun AdkarDetailsScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(localizedString(R.string.no_adkar_found, language))
+                    Text(stringResource(R.string.no_adkar_found))
                 }
             }
 
@@ -301,7 +338,7 @@ fun AdkarDetailsScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = localizedString(R.string.dhikr_count_label, language, currentIndex + 1, adkarList.size),
+                        text = stringResource(R.string.dhikr_count_label, currentIndex + 1, adkarList.size),
                         style = MaterialTheme.typography.labelLarge,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
@@ -371,13 +408,15 @@ fun AdkarDetailsScreen(
                                     )
                                 }
 
-                                if (!language.isRtl) {
-                                    Text(
-                                        text = currentAdkar.transliteration,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        textAlign = TextAlign.Center,
-                                        modifier = Modifier.padding(bottom = 16.dp)
-                                    )
+                                if (language != AppLanguage.ARABIC) {
+                                    if (!language.isRtl) {
+                                        Text(
+                                            text = currentAdkar.transliteration,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(bottom = 16.dp)
+                                        )
+                                    }
 
                                     val translation = when (language) {
                                         AppLanguage.GERMAN -> currentAdkar.translationDe
@@ -418,11 +457,11 @@ fun AdkarDetailsScreen(
                                 )
                                 Text(
                                     text = if (currentRepetitionCount < currentAdkar.repetitions) {
-                                        localizedString(R.string.tap_to_count, language)
+                                        stringResource(R.string.tap_to_count)
                                     } else if (currentIndex < adkarList.size - 1) {
-                                        localizedString(R.string.done_next, language)
+                                        stringResource(R.string.done_next)
                                     } else {
-                                        localizedString(R.string.all_adkar_read, language)
+                                        stringResource(R.string.all_adkar_read)
                                     },
                                     style = MaterialTheme.typography.labelMedium,
                                     color = MaterialTheme.colorScheme.outline
@@ -431,7 +470,7 @@ fun AdkarDetailsScreen(
 
                             val sourceVal = if (language.isRtl) currentAdkar.sourceArabic else currentAdkar.source
                             Text(
-                                text = localizedString(R.string.source_label, language, sourceVal),
+                                text = stringResource(R.string.source_label, sourceVal),
                                 style = MaterialTheme.typography.bodySmall,
                                 textAlign = TextAlign.Center,
                                 color = MaterialTheme.colorScheme.outline
@@ -454,7 +493,7 @@ fun AdkarDetailsScreen(
                             enabled = currentIndex > 0,
                             modifier = Modifier.weight(1f).padding(end = 8.dp)
                         ) {
-                            Text(localizedString(R.string.previous, language))
+                            Text(stringResource(R.string.previous))
                         }
                         Button(
                             onClick = {
@@ -465,7 +504,7 @@ fun AdkarDetailsScreen(
                             enabled = currentIndex < adkarList.size - 1,
                             modifier = Modifier.weight(1f).padding(start = 8.dp)
                         ) {
-                            Text(localizedString(R.string.next, language))
+                            Text(stringResource(R.string.next))
                         }
                     }
                 }
@@ -496,7 +535,7 @@ fun AdkarHome(
     ) {
         item {
             Text(
-                text = localizedString(R.string.choose_your_adkar, language),
+                text = stringResource(R.string.choose_your_adkar),
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -529,20 +568,18 @@ fun AdkarCategoryCard(category: AdkarCategory, language: AppLanguage, onClick: (
                 .padding(20.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = if (language.isRtl) Arrangement.End else Arrangement.Start
+            horizontalArrangement = Arrangement.Start
         ) {
-            if (!language.isRtl) {
-                Icon(
-                    imageVector = category.icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(32.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-            }
+            Icon(
+                imageVector = category.icon,
+                contentDescription = null,
+                modifier = Modifier.size(32.dp),
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.width(16.dp))
             
             Column(
-                horizontalAlignment = if (language.isRtl) Alignment.End else Alignment.Start,
+                horizontalAlignment = Alignment.Start,
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
@@ -552,21 +589,11 @@ fun AdkarCategoryCard(category: AdkarCategory, language: AppLanguage, onClick: (
                 )
                 if (language != AppLanguage.ARABIC) {
                     Text(
-                        text = localizedString(category.titleResId, language),
+                        text = stringResource(category.titleResId),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-            }
-            
-            if (language.isRtl) {
-                Spacer(modifier = Modifier.width(16.dp))
-                Icon(
-                    imageVector = category.icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(32.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
             }
         }
     }
@@ -595,7 +622,7 @@ fun ProfileScreen(
         val minute = parts[1].toInt()
 
         TimePickerDialog(context, { _, h, m ->
-            val newTime = String.format("%02d:%02d", h, m)
+            val newTime = String.format(Locale.getDefault(), "%02d:%02d", h, m)
             profileViewModel.setReminderTime(categoryId, newTime, label)
         }, hour, minute, true).show()
     }
@@ -605,17 +632,17 @@ fun ProfileScreen(
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(24.dp),
-        horizontalAlignment = if (language.isRtl) Alignment.End else Alignment.Start
+        horizontalAlignment = Alignment.Start
     ) {
         Text(
-            text = localizedString(R.string.settings_progress, language),
+            text = stringResource(R.string.settings_progress),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 24.dp)
         )
 
         Text(
-            text = localizedString(R.string.today_progress, language),
+            text = stringResource(R.string.today_progress),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -636,7 +663,7 @@ fun ProfileScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = if (baseResId != -1) localizedString(baseResId, language) else catProgress.categoryId,
+                        text = if (baseResId != -1) stringResource(baseResId) else catProgress.categoryId,
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Text(
@@ -655,38 +682,35 @@ fun ProfileScreen(
 
         // Reminders Section
         Text(
-            text = localizedString(R.string.reminders, language),
+            text = stringResource(R.string.reminders),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-    val morningLabel = localizedString(R.string.morning_reminder, language)
-    val eveningLabel = localizedString(R.string.evening_reminder, language)
-    val sleepLabel = localizedString(R.string.sleep_reminder, language)
+    val morningLabel = stringResource(R.string.morning_reminder)
+    val eveningLabel = stringResource(R.string.evening_reminder)
+    val sleepLabel = stringResource(R.string.sleep_reminder)
 
     ReminderRow(
         label = morningLabel,
         time = morningTime,
-        onClick = { showTimePicker("morning", morningTime, morningLabel) },
-        language = language
+        onClick = { showTimePicker("morning", morningTime, morningLabel) }
     )
     ReminderRow(
         label = eveningLabel,
         time = eveningTime,
-        onClick = { showTimePicker("evening", eveningTime, eveningLabel) },
-        language = language
+        onClick = { showTimePicker("evening", eveningTime, eveningLabel) }
     )
     ReminderRow(
         label = sleepLabel,
         time = sleepTime,
-        onClick = { showTimePicker("sleep", sleepTime, sleepLabel) },
-        language = language
+        onClick = { showTimePicker("sleep", sleepTime, sleepLabel) }
     )
 
         Spacer(modifier = Modifier.size(24.dp))
 
         Text(
-            text = localizedString(R.string.language, language),
+            text = stringResource(R.string.language),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -710,29 +734,19 @@ fun ProfileScreen(
 }
 
 @Composable
-fun ReminderRow(label: String, time: String, onClick: () -> Unit, language: AppLanguage) {
+fun ReminderRow(label: String, time: String, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        horizontalArrangement = if (language.isRtl) Arrangement.End else Arrangement.Start,
+        horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (!language.isRtl) {
-            Text(text = label, modifier = Modifier.weight(1f))
-            OutlinedButton(onClick = onClick) {
-                Icon(Icons.Default.AccessTime, contentDescription = null, modifier = Modifier.size(18.dp))
-                Spacer(Modifier.width(8.dp))
-                Text(text = time)
-            }
-        } else {
-            OutlinedButton(onClick = onClick) {
-                Text(text = time)
-                Spacer(Modifier.width(8.dp))
-                Icon(Icons.Default.AccessTime, contentDescription = null, modifier = Modifier.size(18.dp))
-            }
-            Spacer(Modifier.width(16.dp))
-            Text(text = label, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
+        Text(text = label, modifier = Modifier.weight(1f))
+        OutlinedButton(onClick = onClick) {
+            Icon(Icons.Default.AccessTime, contentDescription = null, modifier = Modifier.size(18.dp))
+            Spacer(Modifier.width(8.dp))
+            Text(text = time)
         }
     }
 }
@@ -770,7 +784,7 @@ fun FavoritesScreen(
             .padding(16.dp)
     ) {
         Text(
-            text = localizedString(R.string.favorites, language),
+            text = stringResource(R.string.favorites),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -789,7 +803,7 @@ fun FavoritesScreen(
             is AdkarUiState.Empty -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
-                        text = localizedString(R.string.no_favorites_yet, language),
+                        text = stringResource(R.string.no_favorites_yet),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.outline
                     )
@@ -816,7 +830,7 @@ fun FavoritesScreen(
                                     textAlign = TextAlign.End,
                                     modifier = Modifier.fillMaxWidth()
                                 )
-                                if (!language.isRtl) {
+                                if (language != AppLanguage.ARABIC) {
                                     Spacer(modifier = Modifier.size(8.dp))
                                     val translation = when (language) {
                                         AppLanguage.GERMAN -> adkar.translationDe
@@ -856,47 +870,31 @@ fun FavoritesScreen(
 }
 
 @Composable
-fun Greeting(name: String, language: AppLanguage, modifier: Modifier = Modifier) {
+fun Greeting(name: String, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = localizedString(R.string.welcome_to, language, name))
+        Text(text = stringResource(R.string.welcome_to, name))
     }
 }
 
 @Composable
 fun localizedString(baseResId: Int, language: AppLanguage, vararg formatArgs: Any): String {
     val context = LocalContext.current
-    val baseName = try {
-        context.resources.getResourceEntryName(baseResId)
-    } catch (e: Exception) {
-        ""
+    val configuration = LocalConfiguration.current
+    val config = Configuration(configuration).apply {
+        setLocale(Locale.forLanguageTag(language.localeCode))
     }
-    
-    if (baseName.isEmpty()) return ""
-
-    val suffix = when (language) {
-        AppLanguage.ARABIC -> "_ar"
-        AppLanguage.GERMAN -> "_de"
-        AppLanguage.FRENCH -> "_fr"
-        AppLanguage.SPANISH -> "_es"
-        AppLanguage.URDU -> "_ur"
-        AppLanguage.FARISI -> "_fa"
-        else -> "" // English/Default
-    }
-
-    val resId = if (suffix.isEmpty()) baseResId
-    else context.resources.getIdentifier(baseName + suffix, "string", context.packageName)
-
-    return if (resId != 0) stringResource(resId, *formatArgs) else stringResource(baseResId, *formatArgs)
+    val localizedContext = context.createConfigurationContext(config)
+    return localizedContext.getString(baseResId, *formatArgs)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Jami3_al_adkarTheme {
-        Greeting("الأذكار", AppLanguage.ARABIC)
+        Greeting("الأذكار")
     }
 }

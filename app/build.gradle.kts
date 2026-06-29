@@ -12,19 +12,34 @@ android {
         applicationId = "com.ibn3abad.jami3_al_adkar"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 5
+        versionName = "4.05"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    androidResources {
+        localeFilters += listOf("en", "ar")
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {

@@ -1,0 +1,32 @@
+<resources>
+    <string name="back">Zurück</string>
+    <string name="no_adkar_found">Keine Adkar gefunden</string>
+    <string name="dhikr_count_label">Adkar %1$d / %2$d</string>
+    <string name="tap_to_count">Tippen zum Zählen</string>
+    <string name="done_next">Abgeschlossen! Nächstes Adkar...</string>
+    <string name="all_adkar_read">Alle Adkar gelesen</string>
+    <string name="source_label">Quelle: %1$s</string>
+    <string name="previous">Zurück</string>
+    <string name="next">Weiter</string>
+    <string name="choose_your_adkar">Wähle deine Adkar</string>
+    <string name="settings_progress">Einstellungen &amp; Fortschritt</string>
+    <string name="today_progress">Heutiger Fortschritt</string>
+    <string name="language">Sprache</string>
+    <string name="favorites">Favoriten</string>
+    <string name="no_favorites_yet">Noch keine Favoriten</string>
+    <string name="welcome_to">Willkommen bei %1$s</string>
+    <string name="cat_morning">Morgengebete</string>
+    <string name="cat_evening">Abendgebete</string>
+    <string name="cat_sleep">Gebete vor dem Schlafen</string>
+    <string name="cat_entering">Beim Eintreten</string>
+    <string name="cat_leaving">Beim Verlassen</string>
+    <string name="dest_home">Startseite</string>
+    <string name="dest_favorites">Favoriten</string>
+    <string name="dest_profile">Profil</string>
+    <string name="reminders">Erinnerungen</string>
+    <string name="morning_reminder">Morgenerinnerung</string>
+    <string name="evening_reminder">Abenderinnerung</string>
+    <string name="sleep_reminder">Schlaf-Erinnerung</string>
+    <string name="notification_title">Zeit für Adkar</string>
+    <string name="notification_body">Vergiss nicht, deine Adkar zu lesen</string>
+</resources>
